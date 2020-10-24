@@ -1,18 +1,19 @@
-## Hello passanger!!
+## Hello passenger!! - こんにちは乗客！
 
-Yes you are lookhing at my profile.
+Yes, you are looking at my profile. - はい、あなたは私のプロフィールを見ています。
 
-### Things I can do
+### Things I can do - 私にできること
  
-- Playing hours of warframe!
-- Watching anime and readin manga (yeah I'm degenerate weeb)!!
-- Using excel!!
+- Playing hours of warframe! - 何時間ものwarframeをプレイしています！
+- Watching anime and reading manga (yeah I'm degenerate weeb)!! - アニメを見たりマンガを読んだり
+- Using excel!! - エクセルを使って！
 - Talking business
-- NOT studying!!
+- NOT studying!! - 勉強していません!!
+- Other things...
 
-and at last I am fullstack developer (syntax expert)
+and at last I am a full-stack developer (syntax expert) - 私はフルスタック開発者です
 
-### Contact ME:
+### Contact ME - 私に連絡して
 
 [<img align="left" alt="ariakh55 | Resume" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.12.0/icons/linkedin.svg">][LinkedIn]
 [<img align="left" alt="ariakh55 | Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />][twitter]
@@ -25,6 +26,6 @@ and at last I am fullstack developer (syntax expert)
 
 <br />
 
-#### IDK what I'm going to do with this but It's cool
+#### IDK what I'm going to do with this but It's cool ( かっこいいね )
 
 ![Aria's github stats](https://github-readme-stats.vercel.app/api?username=ariakh55&show_icons=true&theme=tokyonight)
