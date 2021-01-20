@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/static/js/main.ab8cc02a.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.3a907230.js",
+    "static/css/2.1b4fbf1f.chunk.css": "/static/css/2.1b4fbf1f.chunk.css",
+    "static/js/2.c565bf1c.chunk.js": "/static/js/2.c565bf1c.chunk.js",
+    "index.html": "/index.html",
+    "precache-manifest.7bad03c32e1977876e55ea08c76e8f20.js": "/precache-manifest.7bad03c32e1977876e55ea08c76e8f20.js",
+    "service-worker.js": "/service-worker.js",
+    "static/js/2.c565bf1c.chunk.js.LICENSE.txt": "/static/js/2.c565bf1c.chunk.js.LICENSE.txt",
+    "static/media/AutoSignUp.png": "/static/media/AutoSignUp.acc002a8.png",
+    "static/media/KallehSP.png": "/static/media/KallehSP.abac335e.png",
+    "static/media/eval.png": "/static/media/eval.8267b4a8.png",
+    "static/media/messenger.png": "/static/media/messenger.919e86d9.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3a907230.js",
+    "static/css/2.1b4fbf1f.chunk.css",
+    "static/js/2.c565bf1c.chunk.js",
+    "static/js/main.ab8cc02a.chunk.js"
+  ]
+}
