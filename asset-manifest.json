@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.js": "/static/js/main.ab8cc02a.chunk.js",
-    "main.js.map": "/static/js/main.ab8cc02a.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.3a907230.js",
-    "runtime-main.js.map": "/static/js/runtime-main.3a907230.js.map",
-    "static/css/2.2a86faee.chunk.css": "/static/css/2.2a86faee.chunk.css",
-    "static/js/2.c565bf1c.chunk.js": "/static/js/2.c565bf1c.chunk.js",
-    "static/js/2.c565bf1c.chunk.js.map": "/static/js/2.c565bf1c.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.e504601eb2f8fc91626f78cde82b40ed.js": "/precache-manifest.e504601eb2f8fc91626f78cde82b40ed.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.2a86faee.chunk.css.map": "/static/css/2.2a86faee.chunk.css.map",
-    "static/js/2.c565bf1c.chunk.js.LICENSE.txt": "/static/js/2.c565bf1c.chunk.js.LICENSE.txt",
-    "static/media/AutoSignUp.png": "/static/media/AutoSignUp.acc002a8.png",
-    "static/media/KallehSP.png": "/static/media/KallehSP.abac335e.png",
-    "static/media/eval.png": "/static/media/eval.8267b4a8.png",
-    "static/media/messenger.png": "/static/media/messenger.919e86d9.png"
+    "main.js": "./static/js/main.ab8cc02a.chunk.js",
+    "main.js.map": "./static/js/main.ab8cc02a.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.7e9e7ac3.js",
+    "runtime-main.js.map": "./static/js/runtime-main.7e9e7ac3.js.map",
+    "static/css/2.2a86faee.chunk.css": "./static/css/2.2a86faee.chunk.css",
+    "static/js/2.6b23c599.chunk.js": "./static/js/2.6b23c599.chunk.js",
+    "static/js/2.6b23c599.chunk.js.map": "./static/js/2.6b23c599.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.81c632788ba4fdf26e8a7d767a8aaeb5.js": "./precache-manifest.81c632788ba4fdf26e8a7d767a8aaeb5.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.2a86faee.chunk.css.map": "./static/css/2.2a86faee.chunk.css.map",
+    "static/js/2.6b23c599.chunk.js.LICENSE.txt": "./static/js/2.6b23c599.chunk.js.LICENSE.txt",
+    "static/media/AutoSignUp.png": "./static/media/AutoSignUp.acc002a8.png",
+    "static/media/KallehSP.png": "./static/media/KallehSP.abac335e.png",
+    "static/media/eval.png": "./static/media/eval.8267b4a8.png",
+    "static/media/messenger.png": "./static/media/messenger.919e86d9.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.3a907230.js",
+    "static/js/runtime-main.7e9e7ac3.js",
     "static/css/2.2a86faee.chunk.css",
-    "static/js/2.c565bf1c.chunk.js",
+    "static/js/2.6b23c599.chunk.js",
     "static/js/main.ab8cc02a.chunk.js"
   ]
 }
