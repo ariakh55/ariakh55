@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.js": "/ariakh55/static/js/main.ab8cc02a.chunk.js",
-    "main.js.map": "/ariakh55/static/js/main.ab8cc02a.chunk.js.map",
-    "runtime-main.js": "/ariakh55/static/js/runtime-main.a0da3f5c.js",
-    "runtime-main.js.map": "/ariakh55/static/js/runtime-main.a0da3f5c.js.map",
-    "static/css/2.2a86faee.chunk.css": "/ariakh55/static/css/2.2a86faee.chunk.css",
-    "static/js/2.07c532e3.chunk.js": "/ariakh55/static/js/2.07c532e3.chunk.js",
-    "static/js/2.07c532e3.chunk.js.map": "/ariakh55/static/js/2.07c532e3.chunk.js.map",
-    "index.html": "/ariakh55/index.html",
-    "precache-manifest.c9d59e20df2a562ff2bd260f405cea9e.js": "/ariakh55/precache-manifest.c9d59e20df2a562ff2bd260f405cea9e.js",
-    "service-worker.js": "/ariakh55/service-worker.js",
-    "static/css/2.2a86faee.chunk.css.map": "/ariakh55/static/css/2.2a86faee.chunk.css.map",
-    "static/js/2.07c532e3.chunk.js.LICENSE.txt": "/ariakh55/static/js/2.07c532e3.chunk.js.LICENSE.txt",
-    "static/media/AutoSignUp.png": "/ariakh55/static/media/AutoSignUp.acc002a8.png",
-    "static/media/KallehSP.png": "/ariakh55/static/media/KallehSP.abac335e.png",
-    "static/media/eval.png": "/ariakh55/static/media/eval.8267b4a8.png",
-    "static/media/messenger.png": "/ariakh55/static/media/messenger.919e86d9.png"
+    "main.js": "./static/js/main.ab8cc02a.chunk.js",
+    "main.js.map": "./static/js/main.ab8cc02a.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.7e9e7ac3.js",
+    "runtime-main.js.map": "./static/js/runtime-main.7e9e7ac3.js.map",
+    "static/css/2.2a86faee.chunk.css": "./static/css/2.2a86faee.chunk.css",
+    "static/js/2.6b23c599.chunk.js": "./static/js/2.6b23c599.chunk.js",
+    "static/js/2.6b23c599.chunk.js.map": "./static/js/2.6b23c599.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.678d89902a00a4f747c7cbbdf7c0add2.js": "./precache-manifest.678d89902a00a4f747c7cbbdf7c0add2.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.2a86faee.chunk.css.map": "./static/css/2.2a86faee.chunk.css.map",
+    "static/js/2.6b23c599.chunk.js.LICENSE.txt": "./static/js/2.6b23c599.chunk.js.LICENSE.txt",
+    "static/media/AutoSignUp.png": "./static/media/AutoSignUp.acc002a8.png",
+    "static/media/KallehSP.png": "./static/media/KallehSP.abac335e.png",
+    "static/media/eval.png": "./static/media/eval.8267b4a8.png",
+    "static/media/messenger.png": "./static/media/messenger.919e86d9.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.a0da3f5c.js",
+    "static/js/runtime-main.7e9e7ac3.js",
     "static/css/2.2a86faee.chunk.css",
-    "static/js/2.07c532e3.chunk.js",
+    "static/js/2.6b23c599.chunk.js",
     "static/js/main.ab8cc02a.chunk.js"
   ]
 }
