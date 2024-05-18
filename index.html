@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="./favicon.ico" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="theme-color" content="#595987" />
+        <meta name="description" content="Common L taker's personal portfolio" />
+        <link rel="apple-touch-icon" href="./logo192.png" />
+        <link rel="manifest" href="./manifest.json" />
+        <link rel="stylesheet" href="./index.css">
+        <title>Aria Khoshnood</title>
+    </head>
+
+    <body>
+        <div 
+            id="about"
+            hx-get="/README.md" 
+            hx-target="#about"
+            hx-trigger="load"
+            hx-on::before-swap="renderMarkdown(event)"
+
+        ></div>
+        <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.12"
+            integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
+        crossorigin="anonymous"></script>
+        
+        <script>
+            function renderMarkdown({detail}){
+                detail.serverResponse = window.markdownit({html: true, breaks: true, typographer: true}).render(detail.serverResponse);
+            }
+
+        </script>
+    </body>
+
+</html>
