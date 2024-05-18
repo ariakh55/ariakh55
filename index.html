@@ -13,18 +13,21 @@
         <title>Aria Khoshnood</title>
     </head>
 
-    <body hx-get="https://raw.githubusercontent.com/ariakh55/ariakh55/main/README.md" hx-target="#about" hx-trigger="load" hx-on::before-swap="renderMarkdown(event)">
-        <div id="about"></div>
+    <body>
+        <div 
+            id="about"
+            hx-get="/README.md" 
+            hx-target="#about"
+            hx-trigger="load"
+            hx-on::before-swap="renderMarkdown(event)"
+
+        ></div>
         <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
         <script src="https://unpkg.com/htmx.org@1.9.12"
             integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
         crossorigin="anonymous"></script>
         
         <script>
-            document.addEventListener('htmx:configRequest', (evt) => {
-                evt.detail.headers = [];
-            });
-
             function renderMarkdown({detail}){
                 detail.serverResponse = window.markdownit({html: true, breaks: true, typographer: true}).render(detail.serverResponse);
             }
