@@ -20,7 +20,6 @@
             hx-target="#about"
             hx-trigger="load"
             hx-on::before-swap="renderMarkdown(event)"
-            hx-on="htmx:configRequest: setExternalRequest(event)"
         ></div>
         <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
         <script src="https://unpkg.com/htmx.org@1.9.12"
@@ -28,10 +27,6 @@
         crossorigin="anonymous"></script>
         
         <script>
-
-            function setExternalRequest(event){
-                console.log(event)
-            };
             function renderMarkdown({detail}){
                 detail.serverResponse = window.markdownit({html: true, breaks: true, typographer: true}).render(detail.serverResponse);
             }
