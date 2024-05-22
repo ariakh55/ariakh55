@@ -1,0 +1,35 @@
+{%if useLayout %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#595987" />
+    <meta name="description" content="Common L taker's personal portfolio" />
+    <link rel="apple-touch-icon" href="/assets/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="/styles/index.css">
+    <script src="https://unpkg.com/htmx.org@1.9.12" crossorigin="anonymous"></script>
+    <title>Aria Khoshnood</title>
+</head>
+
+<body style="display: flex; flex-direction: column;">
+    {%- include('partials/header.html')%}
+
+    <main hx-history-elt>
+        <!-- the main content goes here -->
+        {% endif %}
+        {% block content %}{% endblock %}
+        {% if useLayout %}
+    </main>
+
+    {%- include('partials/footer.html')%}
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+    <script src="/scripts/markdown.js"></script>
+</body>
+
+</html>
+
+{% endif %}

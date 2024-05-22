@@ -1,0 +1,29 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+
+<div class="wide-container" hx-target="main" hx-swap="innerHTML">
+    {% if blogPosts.length == 0 %}
+        NOTTIN FOUND
+        
+    {% else  %}
+        <div class="blogs-list">
+        {% for post in blogPosts %}
+            <a hx-get="{{post.link}}" hx-push-url="true">
+                <div>
+                    <span class="number">{{loop.index}}</span>
+                    <span>{{post.info.title}}</span>
+                </div>
+                {{post.name}}
+            </a>
+            {{post.info.description}} <br>
+            {{post.info.date}} - created by {{post.info.author}}
+            <hr />
+        {% endfor %}
+        </div>
+    {% endif  %}
+       
+    
+</div>
+
+{% endblock %}

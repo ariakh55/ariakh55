@@ -18,78 +18,43 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-* {
-    font-family: 'Space Mono';
+@keyframes rainbow {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    57% { color: blue; }
+    71% { color: indigo; }
+    85% { color: violet; }
+    100% { color: red; }
 }
 
-html {
-    background-color: #212121;
-    color: #f1f1f1;
-}
-
-a {
-    color: #f1f1f1;
-    text-decoration: underline;
-}
-
-nav > a {
-    text-decoration: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-nav > a::before {
-    content: '[ ';
-}
-
-nav > a::after {
-    content: ' ]';
-}
-
-a:hover,
-a:active,
-a:focus {
-    color: #c4c4c4;
-}
-
-header,
-main,
-footer {
-    display: flex;
-    justify-content: center;
-}
-
-header {
-    margin-top: 25px;
-}
-
-header nav {
-    display: flex;
-    justify-content: space-between;
-}
-
-nav > a {
-    margin-left: 25px;
-    margin-right: 10px;
-}
-
-main {
-    align-items: center;
-    min-height: 80vh;
-    margin: 0 auto;
-}
-
-footer {
-    align-self: flex-end;
-    width: 100%;
-    padding: 10px 0;
-    margin: 10px 0px;
-}
-
-footer .footer-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    max-width: 1200px;
+:root {
+    /* Define the color palette based on the Catppuccin theme */
+    --rosewater: #f5e0dc;
+    --flamingo: #f2cdcd;
+    --pink: #f5c2e7;
+    --mauve: #cba6f7;
+    --red: #f38ba8;
+    --maroon: #eba0ac;
+    --peach: #fab387;
+    --yellow: #f9e2af;
+    --green: #a6e3a1;
+    --teal: #94e2d5;
+    --sky: #89dceb;
+    --sapphire: #74c7ec;
+    --blue: #89b4fa;
+    --lavender: #b4befe;
+    --text: #cdd6f4;
+    --subtext1: #bac2de;
+    --subtext0: #a6adc8;
+    --overlay2: #9399b2;
+    --overlay1: #7f849c;
+    --overlay0: #6c7086;
+    --surface2: #585b70;
+    --surface1: #45475a;
+    --surface0: #313244;
+    --base: #1e1e2e;
+    --mantle: #181825;
+    --crust: #11111b;
 }
