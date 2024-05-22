@@ -1,0 +1,7 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<div class="wide-container">
+    <div class="markdown-container" hx-trigger="load" hx-get="/CV.md" hx-target="this" hx-on::before-swap="renderMarkdown(event)"></div>
+</div>
+{% endblock %}

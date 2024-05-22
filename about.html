@@ -1,8 +1,0 @@
-<div id="about" hx-get="/README.md" hx-target="#about" hx-trigger="load" hx-on::before-swap="renderMarkdown(event)">
-</div>
-
-<script>
-    function renderMarkdown({detail}) {
-        detail.serverResponse = window.markdownit({html: true, breaks: true, typographer: true}).render(detail.serverResponse);
-    }
-</script>
