@@ -22,7 +22,7 @@ Sep 2016 - Jun 2019
 AVID Technology Department, Tehran, Iran <br >
 Sep 2023 - Present
 
-- Development and maintenance of core services and backend code for Troweb
+- Development and maintenance of core services and backend code 
 - Writing tests and reviewing code as a software developer
 - Working with NodeJS, TypeScript/JavaScript, GraphQL, MongoDB, Redis, Kubernetes, Docker, and microservices
 - Experience with Docker images, k8s, Rancher, and build systems
