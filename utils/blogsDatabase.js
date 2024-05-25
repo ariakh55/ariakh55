@@ -36,6 +36,7 @@ const readBlogsDir = () => {
     .map((file) => {
       const filePath = path.resolve(BLOGS_PATH, file);
       if (!fs.statfsSync(filePath)) return null;
+      if (fs.lstatSync(filePath).isDirectory()) return null;
 
       const fileInfo = extractDescriptionFromFile(filePath);
 

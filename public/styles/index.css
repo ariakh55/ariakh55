@@ -107,7 +107,13 @@ main .wide-container {
 
 .markdown-container {
     margin: 0 auto;
-    /* width: 80%; */
+    padding: 10px 70px;
+    width: 80%;
+}
+
+.markdown-container.justify-parapragh {
+    text-align: justify;
+    text-justify: inter-character;
 }
 
 footer {
