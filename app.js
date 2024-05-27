@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const nunjucks = require("nunjucks");
 const path = require("path");
@@ -59,6 +61,9 @@ app.use((err, _req, res, _next) => {
     .render("pages/error.html", { error: `500 | Internal server Error` });
 });
 
-app.listen(3000, () => {
-  console.info(`Application running http://localhost:3000`);
+const host = process.env.HOST ?? "127.0.0.1";
+const port = process.env.PORT ?? 3000;
+
+app.listen(port, host, () => {
+  console.info(`Application running http://${host}:${port}`);
 });
