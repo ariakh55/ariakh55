@@ -26,13 +26,14 @@ const extractDescriptionFromFile = (filePath) => {
   return result;
 };
 
+const getBlogFiles = () => fs.readdirSync(BLOGS_PATH);
+
 const readBlogsDir = (limit = 10, offset = 0) => {
   if (!fs.statfsSync(BLOGS_PATH)) {
     return [];
   }
 
-  const blogFiles = fs
-    .readdirSync(BLOGS_PATH)
+  const blogFiles = getBlogFiles()
     .slice(offset, limit + 1)
     .map((file) => {
       const filePath = path.resolve(BLOGS_PATH, file);
@@ -49,11 +50,28 @@ const readBlogsDir = (limit = 10, offset = 0) => {
     })
     .filter((file) => !!file);
 
-  console.log(blogFiles);
-
   return blogFiles;
 };
 
-module.exports.fetchBlogs = (limit = 10, offset = 0) => {
-  return readBlogsDir(limit, offset);
+const getBlogByFileName = (filename) => {
+  if (!fs.statfsSync(BLOGS_PATH)) {
+    throw Error("NOTTING FOUND");
+  }
+
+  const blogFiles = getBlogFiles();
+  const foundBlog = blogFiles.find((blogFileName) => filename === blogFileName);
+  if (!foundBlog) {
+    throw Error("BLOG NOT FOUND");
+  }
+
+  const filePath = path.resolve(BLOGS_PATH, foundBlog);
+  if (fs.lstatSync(filePath).isDirectory()) {
+    throw Error("THIS IS DIRECTORY");
+  }
+
+  return filePath;
 };
+
+module.exports.fetchBlogs = (limit = 10, offset = 0) =>
+  readBlogsDir(limit, offset);
+module.exports.fetchBlog = (filename) => getBlogByFileName(filename);

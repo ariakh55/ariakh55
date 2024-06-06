@@ -3,16 +3,14 @@ require("dotenv").config();
 const express = require("express");
 const nunjucks = require("nunjucks");
 const path = require("path");
-const { fetchBlogs } = require("./utils/blogsDatabase");
+const fs = require("fs");
+const { fetchBlogs, fetchBlog } = require("./utils/blogsDatabase");
+const { renderMarkdownToHtml } = require("./utils/markdownRenderer");
 
 const app = express();
 
 app.use(express.static("public"));
-
-app.get("/README.md", (_, res) =>
-  res.sendFile(path.resolve(__dirname, "README.md")),
-);
-app.get("/CV.md", (_, res) => res.sendFile(path.resolve(__dirname, "CV.md")));
+app.use("/rawblogs", express.static("blogs"));
 
 nunjucks.configure("views", {
   autoescape: true,
@@ -35,6 +33,14 @@ app.get("/resume", (_, res) => {
   res.render("pages/resume.html");
 });
 
+app.get("/public/:filename", (req, res) => {
+  const filePath = path.resolve(__dirname, req.params.filename);
+  if (!fs.statfsSync(filePath)) {
+    res.end();
+  }
+  res.send(renderMarkdownToHtml(filePath));
+});
+
 app.get("/blogs", async (_, res) => {
   const blogPosts = fetchBlogs();
   res.render("pages/blogs.html", { blogPosts });
@@ -53,12 +59,15 @@ app.get("/blogs/paginate", (req, res) => {
   });
 });
 
-app.get("/projects", (_, res) => {
-  res.render("pages/projects.html");
+app.get("/blog/:postid", (req, res) => {
+  const blogPost = fetchBlog(req.params.postid);
+  res.render("pages/blog.html", {
+    blogContent: renderMarkdownToHtml(blogPost),
+  });
 });
 
-app.get("/blog/:postid", (req, res) => {
-  res.render("pages/blog.html", { postid: req.params.postid });
+app.get("/projects", (_, res) => {
+  res.render("pages/projects.html");
 });
 
 app.get("*", (_, res) => {

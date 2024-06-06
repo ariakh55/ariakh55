@@ -2,7 +2,18 @@
 
 {% block content %}
 <div class="wide-container">
-    <div class="markdown-container justify-parapragh" hx-trigger="load" hx-get="/rawblogs/{{postid}}" hx-target="this" hx-on::before-swap="renderMarkdown(event)"></div>
+    <div class="markdown-container justify-parapragh">
+    <a 
+        hx-get="/blogs"
+        hx-push-url="true"
+        hx-target="main"
+        hx-swap="innerHTML"
+        class="back-button"
+    >
+        [GO BACK]
+    </a>
+        {{blogContent  | safe }}
+    </div>
 </div>
 
 {% endblock %}

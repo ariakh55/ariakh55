@@ -18,7 +18,7 @@ Sep 2016 - Jun 2019
 - Achieved 17th rank in university grand entrace exam
 
 ### Work Exprience
-#### Fullstack Software Developer
+#### Backend Software Developer
 AVID Technology Department, Tehran, Iran <br >
 Sep 2023 - Present
 
