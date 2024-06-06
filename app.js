@@ -3,14 +3,11 @@ require("dotenv").config();
 const express = require("express");
 const nunjucks = require("nunjucks");
 const path = require("path");
-const { fetchAllBlogs } = require("./utils/blogsDatabase");
+const { fetchBlogs } = require("./utils/blogsDatabase");
 
 const app = express();
 
-const blogPosts = fetchAllBlogs();
-
 app.use(express.static("public"));
-app.use("/rawblogs", express.static("blogs"));
 
 app.get("/README.md", (_, res) =>
   res.sendFile(path.resolve(__dirname, "README.md")),
@@ -39,7 +36,21 @@ app.get("/resume", (_, res) => {
 });
 
 app.get("/blogs", async (_, res) => {
+  const blogPosts = fetchBlogs();
   res.render("pages/blogs.html", { blogPosts });
+});
+
+app.get("/blogs/paginate", (req, res) => {
+  const { limit, offset } = req.query;
+  console.log(limit, offset);
+  if (!limit || !offset) return;
+
+  const blogPosts = fetchBlogs(limit, offset);
+
+  res.render("partials/bloglist.html", {
+    blogPosts,
+    paginateIndex: offset - 1,
+  });
 });
 
 app.get("/projects", (_, res) => {

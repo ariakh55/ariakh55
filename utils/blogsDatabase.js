@@ -26,13 +26,14 @@ const extractDescriptionFromFile = (filePath) => {
   return result;
 };
 
-const readBlogsDir = () => {
+const readBlogsDir = (limit = 10, offset = 0) => {
   if (!fs.statfsSync(BLOGS_PATH)) {
     return [];
   }
 
   const blogFiles = fs
     .readdirSync(BLOGS_PATH)
+    .slice(offset, limit + 1)
     .map((file) => {
       const filePath = path.resolve(BLOGS_PATH, file);
       if (!fs.statfsSync(filePath)) return null;
@@ -48,9 +49,11 @@ const readBlogsDir = () => {
     })
     .filter((file) => !!file);
 
+  console.log(blogFiles);
+
   return blogFiles;
 };
 
-module.exports.fetchAllBlogs = () => {
-  return readBlogsDir();
+module.exports.fetchBlogs = (limit = 10, offset = 0) => {
+  return readBlogsDir(limit, offset);
 };

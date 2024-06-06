@@ -8,20 +8,7 @@
         
     {% else  %}
         <div class="blogs-list">
-        {% for post in blogPosts %}
-            <div>
-                <a hx-get="{{post.link}}" hx-push-url="true">
-                    <div>
-                        <span class="number">{{loop.index}}</span>
-                        <span>{{post.info.title}}</span>
-                    </div>
-                    <div>{{post.name}}</div>
-                </a>
-                {{post.info.description}} <br>
-                {{post.info.date}} - created by {{post.info.author}}
-                <hr />
-            </div>
-        {% endfor %}
+            {%- include('partials/bloglist.html')%}
         </div>
     {% endif  %}
        

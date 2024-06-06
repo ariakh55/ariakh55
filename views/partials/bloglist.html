@@ -1,0 +1,29 @@
+{% for post in blogPosts %}
+    {% if loop.last and loop.length == 10 %}
+    <div
+        hx-trigger="revealed"
+        hx-get="/blogs/paginate?limit=10&offset={{loop.index + 1}}"
+        hx-target=".blogs-list"
+        hx-swap="beforeend"
+    >
+    {% else %}
+    <div>
+    {% endif %}
+        <a hx-get="{{post.link}}" hx-push-url="true">
+            <div>
+                <span class="number">
+                    {% if paginateIndex %}
+                        {{paginateIndex + loop.index}} 
+                    {% else %}
+                        {{loop.index}}
+                    {% endif %}
+                </span>
+                <span>{{post.info.title}}</span>
+            </div>
+            <div>{{post.name}}</div>
+        </a>
+        {{post.info.description}} <br>
+        {{post.info.date}} - created by {{post.info.author}}
+        <hr />
+    </div>
+{% endfor %}
