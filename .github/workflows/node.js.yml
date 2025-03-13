@@ -1,0 +1,20 @@
+name: Trigger Deploy
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger Deployment Webhook
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      run: |
+        curl -X POST 'https://sulfursashimi.tech/webhooks/deploy' \
+        --header 'Content-Type: application/x-www-form-urlencoded' \
+        --data 'service_name=ariakh55' \
+        --header 'Authorization: Bearer ${{ secrets.DEPLOY_WEBHOOK_SECRET }}'
