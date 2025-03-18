@@ -18,9 +18,20 @@ Sep 2016 - Jun 2019
 - Achieved 17th rank in university grand entrace exam
 
 ### Work Exprience
+#### AI Software Engineer
+Troweb, Dubai (Hybrid) <br >
+Mar 2024 - Present
+
+focused on developing and maintaining AI-powered backend systems, 
+leveraging large language models (LLMs) from OpenAI and other providers.
+Work involves building Retrieval-Augmented Generation (RAG) pipelines and designing agentic
+workflows to enhance automation and intelligent decision-making. Also responsible for
+maintaining and optimizing legacy code, ensuring system stability, scalability, and performance.
+
+
 #### Backend Software Developer
-AVID Technology Department, Tehran, Iran <br >
-Sep 2023 - Present
+Troweb, Dubai (Hybrid) <br >
+Sep 2023 - Mar 2024
 
 - Development and maintenance of core services and backend code 
 - Writing tests and reviewing code as a software developer
