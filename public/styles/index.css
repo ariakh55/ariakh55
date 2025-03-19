@@ -15,7 +15,7 @@ a {
     cursor: pointer;
 }
 
-img{
+img {
     width: 100%;
     height: auto;
 }
@@ -36,12 +36,16 @@ a:focus {
     color: var(--red);
 }
 
-h1, h2, h3 {
-  color: var(--maroon);
+h1,
+h2,
+h3 {
+    color: var(--maroon);
 }
 
-h4, h5, h6 {
-  color: var(--lavender);
+h4,
+h5,
+h6 {
+    color: var(--lavender);
 }
 
 header,
@@ -60,18 +64,18 @@ header nav {
     justify-content: space-between;
 }
 
-nav > a {
+nav>a {
     margin-left: 25px;
     margin-right: 10px;
     text-decoration: none;
     font-size: 1.2rem;
 }
 
-nav > a::before {
+nav>a::before {
     content: '[ ';
 }
 
-nav > a::after {
+nav>a::after {
     content: ' ]';
 }
 
@@ -89,6 +93,11 @@ main .wide-container {
     padding: 0 auto;
     padding-top: 12px;
     min-width: 70%;
+}
+
+.wide-container.flex {
+    display: flex;
+    margin-top: 20px;
 }
 
 .back-button {
@@ -134,6 +143,30 @@ main .wide-container {
     text-justify: inter-character;
 }
 
+.project-card {
+    margin: 25px;
+    border: 1.5px solid var(--lavender);
+    width: 420px;
+    height: 380px;
+}
+
+.project-card a {
+    display: block;
+    font-weight: bold;
+    font-size: 1.17em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.project-card p,
+.project-card a {
+    padding: 0 15px;
+}
+
+.project-card:hover {
+    border-color: var(--sky);
+}
+
 footer {
     align-self: flex-end;
     width: 100%;
@@ -155,31 +188,55 @@ footer .footer-info {
 }
 
 @media only screen and (max-width: 768px) {
-    main { width: 90%; }
+    main {
+        width: 90%;
+    }
 
-    h1 { font-size: 150% }
-    h2 { font-size: 140% }
-    h3 { font-size: 130% }
-    h4 { font-size: 120% }
-    h5 { font-size: 120% }
-    h6 { font-size: 120% }
+    h1 {
+        font-size: 150%
+    }
+
+    h2 {
+        font-size: 140%
+    }
+
+    h3 {
+        font-size: 130%
+    }
+
+    h4 {
+        font-size: 120%
+    }
+
+    h5 {
+        font-size: 120%
+    }
+
+    h6 {
+        font-size: 120%
+    }
 }
 
 @media only screen and (max-width: 615px) {
-    body{
+    body {
         width: 100%;
         margin: 0;
     }
 
-    nav > a {
+    nav>a {
         font-size: 1rem;
     }
 
-    nav > a::before, nav > a::after {
-         content: unset;
+    nav>a::before,
+    nav>a::after {
+        content: unset;
     }
 
-    .footer-info{
+    .footer-info {
+        flex-direction: column;
+    }
+
+    .wide-container.flex {
         flex-direction: column;
     }
 
@@ -187,7 +244,7 @@ footer .footer-info {
         text-align: center;
     }
 
-    .blogs-list a{
+    .blogs-list a {
         justify-content: center;
         align-items: center;
         flex-direction: column;
