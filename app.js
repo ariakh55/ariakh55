@@ -1,11 +1,10 @@
-require("dotenv").config();
-
 const express = require("express");
 const nunjucks = require("nunjucks");
 const path = require("path");
 const fs = require("fs");
 const { fetchBlogs, fetchBlog } = require("./utils/blogsDatabase");
 const { renderMarkdownToHtml } = require("./utils/markdownRenderer");
+const config = require("./config");
 
 const app = express();
 
@@ -41,17 +40,28 @@ app.get("/public/:filename", (req, res) => {
   res.send(renderMarkdownToHtml(filePath));
 });
 
-app.get("/blogs", async (_, res) => {
-  const blogPosts = fetchBlogs();
+const showDraftsMiddleware = (req, res, next) => {
+  const showDrafts =
+    config.devHeader &&
+    config.devHeaderValue &&
+    req.query[config.devHeader] === config.devHeaderValue;
+
+  res.locals.showDrafts = showDrafts;
+
+  return next();
+};
+
+app.get("/blogs", showDraftsMiddleware, async (_, res) => {
+  const blogPosts = fetchBlogs(res.locals.showDrafts);
   res.render("pages/blogs.html", { blogPosts });
 });
 
-app.get("/blogs/paginate", (req, res) => {
+app.get("/blogs/paginate", showDraftsMiddleware, (req, res) => {
   const { limit, offset } = req.query;
   console.log(limit, offset);
   if (!limit || !offset) return;
 
-  const blogPosts = fetchBlogs(limit, offset);
+  const blogPosts = fetchBlogs(res.locals.showDrafts, limit, offset);
 
   res.render("partials/bloglist.html", {
     blogPosts,
@@ -59,8 +69,8 @@ app.get("/blogs/paginate", (req, res) => {
   });
 });
 
-app.get("/blog/:postid", (req, res) => {
-  const blogPost = fetchBlog(req.params.postid);
+app.get("/blog/:postid", showDraftsMiddleware, (req, res) => {
+  const blogPost = fetchBlog(req.params.postid, res.locals.showDrafts);
   res.render("pages/blog.html", {
     blogContent: renderMarkdownToHtml(blogPost),
   });
@@ -75,6 +85,11 @@ app.get("*", (_, res) => {
 });
 
 app.use((err, _req, res, _next) => {
+  if ("code" in err) {
+    return res
+      .status(err.code)
+      .render("pages/error.html", { error: `${err.code} | ${err.message}` });
+  }
   console.error(err.stack);
   res
     .status(500)

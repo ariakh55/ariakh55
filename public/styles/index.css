@@ -4,6 +4,10 @@
     font-family: 'Space Mono';
 }
 
+doc-info{
+  display: none;
+}
+
 html {
     background-color: var(--crust);
     color: var(--text);
