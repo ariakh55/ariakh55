@@ -70,8 +70,10 @@ app.get("/blogs/paginate", showDraftsMiddleware, (req, res) => {
 });
 
 app.get("/blog/:postid", showDraftsMiddleware, (req, res) => {
+  const title = req.params.postid;
   const blogPost = fetchBlog(req.params.postid, res.locals.showDrafts);
   res.render("pages/blog.html", {
+    blogTitle: title,
     blogContent: renderMarkdownToHtml(blogPost),
   });
 });

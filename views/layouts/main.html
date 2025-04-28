@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@0.2.2/css/catppuccin-mocha.css">
     <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
     <script src="//unpkg.com/htmx.org@1.9.12" crossorigin="anonymous"></script>
+    <script src="//unpkg.com/htmx-ext-head-support/dist/head-support.js" crossorigin="anonymous"></script>
     <title>Aria Khoshnood</title>
 </head>
 
-<body style="display: flex; flex-direction: column;">
+<body style="display: flex; flex-direction: column;" hx-ext="head-support">
     {%- include('partials/header.html')%}
 
     <main hx-history-elt>
