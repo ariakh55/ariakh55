@@ -171,6 +171,10 @@ main .wide-container {
     border-color: var(--sky);
 }
 
+.icon {
+  font-family: 'NerdIcon'
+}
+
 footer {
     align-self: flex-end;
     width: 100%;
