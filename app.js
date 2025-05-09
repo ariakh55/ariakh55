@@ -5,6 +5,7 @@ const fs = require("fs");
 const { fetchBlogs, fetchBlog } = require("./utils/blogsDatabase");
 const { renderMarkdownToHtml } = require("./utils/markdownRenderer");
 const config = require("./config");
+const { buildHead } = require("./utils/buildHead");
 
 const app = express();
 
@@ -21,23 +22,28 @@ app.use((req, res, next) => {
   res.locals.useLayout = req.headers["hx-request"] !== "true";
   res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
 
+  res.locals.head = buildHead();
+
   next();
 });
 
 app.get("/", (_, res) => {
-  res.render("pages/home.html");
+  res.render("pages/home.html", {
+    content: renderMarkdownToHtml("./README.md"),
+  });
 });
 
 app.get("/resume", (_, res) => {
-  res.render("pages/resume.html");
-});
+  const { head } = res.locals;
+  res.locals.head = buildHead({
+    title: `${head.title} - Resume`,
+    description: "Official Works",
+    url: `${head.og.url}/resume`,
+  });
 
-app.get("/public/:filename", (req, res) => {
-  const filePath = path.resolve(__dirname, req.params.filename);
-  if (!fs.statfsSync(filePath)) {
-    res.end();
-  }
-  res.send(renderMarkdownToHtml(filePath));
+  res.render("pages/resume.html", {
+    content: renderMarkdownToHtml("./CV.md"),
+  });
 });
 
 const showDraftsMiddleware = (req, res, next) => {
@@ -52,6 +58,13 @@ const showDraftsMiddleware = (req, res, next) => {
 };
 
 app.get("/blogs", showDraftsMiddleware, async (_, res) => {
+  const { head } = res.locals;
+  res.locals.head = buildHead({
+    title: `${head.title} - Blogs`,
+    description: "Writings and guides",
+    url: `${head.og.url}/blogs`,
+  });
+
   const blogPosts = fetchBlogs(res.locals.showDrafts);
   res.render("pages/blogs.html", { blogPosts });
 });
@@ -71,22 +84,47 @@ app.get("/blogs/paginate", showDraftsMiddleware, (req, res) => {
 
 app.get("/blog/:postid", showDraftsMiddleware, (req, res) => {
   const title = req.params.postid;
-  const blogPost = fetchBlog(req.params.postid, res.locals.showDrafts);
+
+  const { head } = res.locals;
+  res.locals.head = buildHead({
+    title,
+    description: "Writings and guides",
+    url: `${head.og.url}/blog/${title}`,
+  });
+
+  const blogPost = fetchBlog(title, res.locals.showDrafts);
   res.render("pages/blog.html", {
-    blogTitle: title,
-    blogContent: renderMarkdownToHtml(blogPost),
+    title,
+    content: renderMarkdownToHtml(blogPost),
   });
 });
 
 app.get("/projects", (_, res) => {
+  const { head } = res.locals;
+  res.locals.head = buildHead({
+    title: `${head.title} - Projects`,
+    description: "Side Projects which are finished",
+    url: `${head.og.url}/projects`,
+  });
+
   res.render("pages/projects.html");
 });
 
 app.get("*", (_, res) => {
+  res.locals.head = buildHead({
+    title: `NOT FOUND`,
+    description: "What are you looking for",
+  });
+
   res.status(404).render("pages/error.html", { error: "404 | PAGE NOT FOUND" });
 });
 
 app.use((err, _req, res, _next) => {
+  res.locals.head = buildHead({
+    title: `ERROR`,
+    description: "You messed up!!",
+  });
+
   if ("code" in err) {
     return res
       .status(err.code)

@@ -1,24 +1,37 @@
 {%if useLayout %}
 <!doctype html>
-<html lang="en">
+<html lang="en" hx-ext="head-support">
 
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/assets/favicon.ico" />
+
+
+    {% endif %}
+    <title>{% block title %}{{ head.title or 'Aria Khoshnood' }}{% endblock %}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#595987" />
-    <meta name="description" content="Common L taker's personal portfolio" />
+
+    <meta name="description" content="{{ head.description or 'Common L taker\'s personal portfolio' }}" />
+    <meta name="theme-color" content="{{ head.themeColor or '#f5e0dc' }}" />
+    <meta property="og:title" content="{{ head.og.title or 'Aria Khoshnood' }}" />
+    <meta property="og:type" content="{{ head.og.type or 'portfolio' }}" />
+    <meta property="og:url" content="{{ head.og.url or 'https://www.sulfursashimi.tech' }}" />
+    <meta property="og:site_name" content="{{ head.og.site_name or 'SulfurSashimi dot Tech' }}" />
+    <meta property="og:description" content="{{ head.og.description or 'Common L taker\'s personal portfolio' }}" />
+   
+    {% if useLayout %}
     <link rel="apple-touch-icon" href="/assets/logo192.png" />
+
     <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="/styles/index.css">
     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@0.2.2/css/catppuccin-mocha.css">
     <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+
     <script src="//unpkg.com/htmx.org@1.9.12" crossorigin="anonymous"></script>
     <script src="//unpkg.com/htmx-ext-head-support/dist/head-support.js" crossorigin="anonymous"></script>
-    <title>Aria Khoshnood</title>
 </head>
 
-<body style="display: flex; flex-direction: column;" hx-ext="head-support">
+<body style="display: flex; flex-direction: column;">
     {%- include('partials/header.html')%}
 
     <main hx-history-elt>

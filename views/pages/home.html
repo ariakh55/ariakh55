@@ -1,11 +1,8 @@
 {% extends 'layouts/main.html' %}
 
 {% block content %}
-<head>
-    <title>Aria Khoshnood</title>
-</head>
 <div class="wide-container">
-    <div class="markdown-container" hx-get="/public/README.md" hx-target="this" hx-trigger="load"> </div>
+    <div class="markdown-container" data-src="/public/README.md">{{content | safe}}</div>
 
     <!-- <pre class="cream-of-crop lolcat"> -->
     <!--       ___           ___                         ___           ___           ___      -->
