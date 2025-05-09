@@ -83,19 +83,22 @@ app.get("/blogs/paginate", showDraftsMiddleware, (req, res) => {
 });
 
 app.get("/blog/:postid", showDraftsMiddleware, (req, res) => {
-  const title = req.params.postid;
+  const { postid } = req.params;
+  const { filePath, description, title } = fetchBlog(
+    postid,
+    res.locals.showDrafts,
+  );
 
   const { head } = res.locals;
   res.locals.head = buildHead({
     title,
-    description: "Writings and guides",
-    url: `${head.og.url}/blog/${title}`,
+    description,
+    url: `${head.og.url}/blog/${postid}`,
   });
 
-  const blogPost = fetchBlog(title, res.locals.showDrafts);
   res.render("pages/blog.html", {
     title,
-    content: renderMarkdownToHtml(blogPost),
+    content: renderMarkdownToHtml(filePath),
   });
 });
 

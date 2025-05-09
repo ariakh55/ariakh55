@@ -97,12 +97,12 @@ const getBlogByFileName = (filename, showDraft) => {
     throw new AppError("THIS IS DIRECTORY", 500);
   }
 
-  const { isDraft } = extractDescriptionFromFile(filePath);
+  const { isDraft, description, title } = extractDescriptionFromFile(filePath);
   if (!showDraft && isDraft) {
     throw new AppError("BLOG NOT FOUND", 404);
   }
 
-  return filePath;
+  return { filePath, title, description };
 };
 
 module.exports.fetchBlogs = (showDraft = false, limit = 10, offset = 0) =>
