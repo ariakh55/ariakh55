@@ -2,12 +2,34 @@ const express = require("express");
 const nunjucks = require("nunjucks");
 const path = require("path");
 const fs = require("fs");
+const Database = require("better-sqlite3");
+
+const { AppError } = require("./utils/errors");
 const { fetchBlogs, fetchBlog } = require("./utils/blogsDatabase");
 const { renderMarkdownToHtml } = require("./utils/markdownRenderer");
 const config = require("./config");
 const { buildHead } = require("./utils/buildHead");
+const {
+  logVisit,
+  getVisitsForPage,
+  excludedPrefixes,
+  excludedExact,
+  getTotalVisitsPerPage,
+} = require("./utils/statics");
 
 const app = express();
+const dbPath = path.join(__dirname, "stats.db");
+const db = new Database(dbPath);
+
+db.exec(`
+    CREATE TABLE IF NOT EXISTS page_visits (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        path TEXT NOT NULL,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_page_visits_path ON page_visits(path);
+`);
 
 app.use(express.static("public"));
 app.use("/rawblogs", express.static("blogs"));
@@ -15,6 +37,19 @@ app.use("/rawblogs", express.static("blogs"));
 nunjucks.configure("views", {
   autoescape: true,
   express: app,
+});
+
+app.use((req, _, next) => {
+  const isExcludedPrefix = excludedPrefixes.some((prefix) =>
+    req.path.startsWith(prefix),
+  );
+  const isExcludedExact = excludedExact.includes(req.path);
+
+  if (!isExcludedPrefix && !isExcludedExact) {
+    logVisit(db, req.path);
+  }
+
+  next();
 });
 
 app.use((req, res, next) => {
@@ -46,18 +81,18 @@ app.get("/resume", (_, res) => {
   });
 });
 
-const showDraftsMiddleware = (req, res, next) => {
-  const showDrafts =
+const devModeEnabled = (req, res, next) => {
+  const isDevMode =
     config.devHeader &&
     config.devHeaderValue &&
     req.query[config.devHeader] === config.devHeaderValue;
 
-  res.locals.showDrafts = showDrafts;
+  res.locals.isDevMode = isDevMode;
 
   return next();
 };
 
-app.get("/blogs", showDraftsMiddleware, async (_, res) => {
+app.get("/blogs", devModeEnabled, async (_, res) => {
   const { head } = res.locals;
   res.locals.head = buildHead({
     title: `${head.title} - Blogs`,
@@ -65,16 +100,16 @@ app.get("/blogs", showDraftsMiddleware, async (_, res) => {
     url: `${head.og.url}/blogs`,
   });
 
-  const blogPosts = fetchBlogs(res.locals.showDrafts);
+  const blogPosts = fetchBlogs(res.locals.isDevMode);
   res.render("pages/blogs.html", { blogPosts });
 });
 
-app.get("/blogs/paginate", showDraftsMiddleware, (req, res) => {
+app.get("/blogs/paginate", devModeEnabled, (req, res) => {
   const { limit, offset } = req.query;
   console.log(limit, offset);
   if (!limit || !offset) return;
 
-  const blogPosts = fetchBlogs(res.locals.showDrafts, limit, offset);
+  const blogPosts = fetchBlogs(res.locals.isDevMode, limit, offset);
 
   res.render("partials/bloglist.html", {
     blogPosts,
@@ -82,11 +117,11 @@ app.get("/blogs/paginate", showDraftsMiddleware, (req, res) => {
   });
 });
 
-app.get("/blog/:postid", showDraftsMiddleware, (req, res) => {
+app.get("/blog/:postid", devModeEnabled, (req, res) => {
   const { postid } = req.params;
   const { filePath, description, title } = fetchBlog(
     postid,
-    res.locals.showDrafts,
+    res.locals.isDevMode,
   );
 
   const { head } = res.locals;
@@ -111,6 +146,17 @@ app.get("/projects", (_, res) => {
   });
 
   res.render("pages/projects.html");
+});
+
+app.get("/api/stats", devModeEnabled, (_, res) => {
+  const { isDevMode } = res.locals;
+
+  if (!isDevMode) {
+    throw new AppError("NOT FOUND", 404);
+  }
+  const stats = getTotalVisitsPerPage(db);
+
+  res.json(stats);
 });
 
 app.get("*", (_, res) => {
