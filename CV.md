@@ -1,6 +1,7 @@
 ### Profile
-Backend developer at AVID with extensive knowledge in Node.js, TypeScript, and other 
-programming languages. Graduate with an Associate degree from Shamsipour University. Aiming to apply skills in a new environment.
+Backend developer at Troweb with extensive knowledge in Node.js, TypeScript, and other 
+programming languages. Currently developing LLM agents and building AI agentic workflows.
+Graduate with an Associate degree from Shamsipour University. Aiming to apply skills in a new environment.
 
 ### Education
 #### Associats Degree in Computer Engineering
@@ -15,18 +16,26 @@ Sep 19 - Aug 2021
 Sep 2016 - Jun 2019
 
 - Honor student with the average score of 19.57 / 20
-- Achieved 17th rank in university grand entrace exam
+- Achieved 17th rank in university grand entrance exam
 
 ### Work Exprience
+#### Senior AI/Backend Engineer
+Troweb, Dubai (Hybrid) <br >
+April 2025 - Present
+
+- Developing LLM-powered agentic workflows, RAG systems, and AI-powered expert systems to evaluate scientific papers
+- Maintaining and optimizing legacy code, ensuring system stability, scalability, and performance.
+
 #### AI Software Engineer
 Troweb, Dubai (Hybrid) <br >
-Mar 2024 - Present
+Mar 2024 - April 2025
 
-focused on developing and maintaining AI-powered backend systems, 
-leveraging large language models (LLMs) from OpenAI and other providers.
-Work involves building Retrieval-Augmented Generation (RAG) pipelines and designing agentic
-workflows to enhance automation and intelligent decision-making. Also responsible for
-maintaining and optimizing legacy code, ensuring system stability, scalability, and performance.
+- Focused on developing and maintaining AI-powered backend systems.
+- Leveraging large language models (LLMs) from OpenAI and other providers.
+- Work involves building Retrieval-Augmented Generation (RAG) pipelines and designing agentic
+  workflows to enhance automation and intelligent decision-making.
+- Enhancing RAG systems by implementing MCP clients in the current codebase
+- Responsible for maintaining and optimizing legacy code, ensuring system stability, scalability, and performance.
 
 
 #### Backend Software Developer

@@ -24,12 +24,12 @@ img {
     height: auto;
 }
 
-.markdown-container[hx-get="/public/README.md"] img {
+.markdown-container[data-src="/public/README.md"] img {
     width: auto;
     height: 20px;
 }
 
-.markdown-container[hx-get="/public/README.md"] .website-container img {
+.markdown-container[data-src="/public/README.md"] .website-container img {
     width: 450px;
     height: 195px;
 }
@@ -270,14 +270,14 @@ footer .footer-info {
         width: 100%;
     }
 
-    .markdown-container[hx-get="/public/README.md"] .website-container img {
+    .markdown-container[data-src="/public/README.md"] .website-container img {
         width: 300px;
         height: auto;
     }
 }
 
 @media only screen and (max-width: 425px) {
-    .markdown-container[hx-get="/public/README.md"] .website-container img {
+    .markdown-container[data-src="/public/README.md"] .website-container img {
         width: 220px;
     }
 }
