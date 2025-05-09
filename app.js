@@ -2,7 +2,7 @@ const express = require("express");
 const nunjucks = require("nunjucks");
 const path = require("path");
 const fs = require("fs");
-const Database = require("better-sqlite3");
+const { Database } = require("sqlite3").verbose();
 
 const { AppError } = require("./utils/errors");
 const { fetchBlogs, fetchBlog } = require("./utils/blogsDatabase");
@@ -11,7 +11,6 @@ const config = require("./config");
 const { buildHead } = require("./utils/buildHead");
 const {
   logVisit,
-  getVisitsForPage,
   excludedPrefixes,
   excludedExact,
   getTotalVisitsPerPage,
@@ -21,7 +20,7 @@ const app = express();
 const dbPath = path.join(__dirname, "stats.db");
 const db = new Database(dbPath);
 
-db.exec(`
+db.run(`
     CREATE TABLE IF NOT EXISTS page_visits (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         path TEXT NOT NULL,
@@ -154,9 +153,8 @@ app.get("/api/stats", devModeEnabled, (_, res) => {
   if (!isDevMode) {
     throw new AppError("NOT FOUND", 404);
   }
-  const stats = getTotalVisitsPerPage(db);
 
-  res.json(stats);
+  getTotalVisitsPerPage(db, (_, rows) => res.json(rows));
 });
 
 app.get("*", (_, res) => {
