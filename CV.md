@@ -20,14 +20,14 @@ Sep 2016 - Jun 2019
 
 ### Work Exprience
 #### Senior AI/Backend Engineer
-Troweb, Dubai (Hybrid) <br >
+NotionWave Inc, Dubai, UAE <br >
 April 2025 - Present
 
 - Developing LLM-powered agentic workflows, RAG systems, and AI-powered expert systems to evaluate scientific papers
 - Maintaining and optimizing legacy code, ensuring system stability, scalability, and performance.
 
 #### AI Software Engineer
-Troweb, Dubai (Hybrid) <br >
+Troweb, Dubai, UAE (Hybrid) <br >
 Mar 2024 - April 2025
 
 - Focused on developing and maintaining AI-powered backend systems.
