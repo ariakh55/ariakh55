@@ -4,8 +4,8 @@
     font-family: 'Space Mono';
 }
 
-doc-info{
-  display: none;
+doc-info {
+    display: none;
 }
 
 html {
@@ -73,6 +73,7 @@ header {
 header nav {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 nav>a {
@@ -108,12 +109,14 @@ main .wide-container {
 
 .wide-container.flex {
     display: flex;
+    justify-content: center;
     margin-top: 20px;
 }
 
 .back-button {
     text-decoration: none;
 }
+
 
 .blogs-list {
     display: flex;
@@ -154,10 +157,17 @@ main .wide-container {
     text-justify: inter-character;
 }
 
+.projects-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+}
+
 .project-card {
-    margin: 25px;
     border: 1.5px solid var(--lavender);
-    width: 420px;
+    width: 100%;
+    max-width: 420px;
     height: 380px;
 }
 
@@ -167,6 +177,11 @@ main .wide-container {
     font-size: 1.17em;
     font-weight: bold;
     text-decoration: none;
+}
+
+.project-card a::after {
+    font-family: 'NerdIcon';
+    content: ' ';
 }
 
 .project-card p,
@@ -179,7 +194,7 @@ main .wide-container {
 }
 
 .icon {
-  font-family: 'NerdIcon'
+    font-family: 'NerdIcon';
 }
 
 footer {
@@ -197,9 +212,25 @@ footer .footer-info {
     max-width: 1200px;
 }
 
+.cream-of-crop {
+    font-family: monospace;
+    font-size: 1vw;
+    line-height: 1vw;
+}
+
 .lolcat {
     text-align: center;
     animation: rainbow 5s infinite;
+}
+
+@media only screen and (max-width: 1250px) {
+    .projects-list {
+        justify-content: center;
+    }
+
+    .project-card {
+        flex: 0 0 45%;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -229,6 +260,14 @@ footer .footer-info {
 
     h6 {
         font-size: 120%
+    }
+
+    nav {
+        justify-content: space-evenly !important;
+    }
+
+    .project-card {
+        flex: unset;
     }
 }
 
