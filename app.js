@@ -9,12 +9,7 @@ const { fetchBlogs, fetchBlog } = require("./utils/blogsDatabase");
 const { renderMarkdownToHtml } = require("./utils/markdownRenderer");
 const config = require("./config");
 const { buildHead } = require("./utils/buildHead");
-const {
-  logVisit,
-  excludedPrefixes,
-  excludedExact,
-  getTotalVisitsPerPage,
-} = require("./utils/statics");
+const { logVisit, getTotalVisitsPerPage } = require("./utils/statics");
 
 const app = express();
 const dbPath = path.join(__dirname, "stats.db");
@@ -39,15 +34,7 @@ nunjucks.configure("views", {
 });
 
 app.use((req, _, next) => {
-  const isExcludedPrefix = excludedPrefixes.some((prefix) =>
-    req.path.startsWith(prefix),
-  );
-  const isExcludedExact = excludedExact.includes(req.path);
-
-  if (!isExcludedPrefix && !isExcludedExact) {
-    logVisit(db, req.path);
-  }
-
+  logVisit(db, req.path);
   next();
 });
 
@@ -78,6 +65,17 @@ app.get("/resume", (_, res) => {
   res.render("pages/resume.html", {
     content: renderMarkdownToHtml("./CV.md"),
   });
+});
+
+app.get("/playlist", (_, res) => {
+  const { head } = res.locals;
+  res.locals.head = buildHead({
+    title: `${head.title} - Playlist`,
+    description: "Listening to right now",
+    url: `${head.og.url}/playlist`,
+  });
+
+  res.render("pages/playlist.html");
 });
 
 const devModeEnabled = (req, res, next) => {
