@@ -142,7 +142,11 @@ app.get("/projects", (_, res) => {
     url: `${head.og.url}/projects`,
   });
 
-  res.render("pages/projects.html");
+  const projects = fs.readFileSync("./projects.json");
+
+  res.render("pages/projects.html", {
+    projects: JSON.parse(projects),
+  });
 });
 
 app.get("/api/stats", devModeEnabled, (_, res) => {

@@ -1,0 +1,37 @@
+[
+  {
+    "image": "/assets/tekkenguide-screenshot.png",
+    "altimg": "Get ready for the next battle",
+    "link": "https://tekkenguide.sulfursashimi.tech",
+    "name": "Tekken Guide",
+    "description": "A project to reach your sorry a*s to GoD"
+  },
+  {
+    "image": "https://opengraph.githubassets.com/3cbcd806d750bb60e6e6504fe070c64336e2cc7f88156892321bba6d15f45dda/ariakh55/worker-plus",
+    "altimg": "A simple but elegant library to create a local backend for desktop apps. - ariakh55/worker-plus",
+    "link": "https://github.com/ariakh55/worker-plus",
+    "name": "ariakh55/worker-plus",
+    "description": "A simple but elegant library to create a local backend for desktop apps."
+  },
+  {
+    "image": "https://opengraph.githubassets.com/8df23507ea72e47869dce08ff28c2e43c9ebbb0a95b427d82aa10aade3fc0c89/ariakh55/dotfiles",
+    "altimg": "Dotfiles",
+    "link": "https://github.com/ariakh55/doftiles",
+    "name": "ariakh55/doftiles",
+    "description": "My dotfiles + some techinacal difficulties and complexities"
+  },
+  {
+    "image": "https://opengraph.githubassets.com/2a09448c2d5284b6428f8e6607b0d732d430c41feddba796cff5642ae351dda1/ariakh55/deploy-webhook",
+    "altimg": "ariakh55/deploy-webhook",
+    "link": "https://github.com/ariakh55/worker-plus",
+    "name": "ariakh55/deploy-webhook",
+    "description": "A very lazy implementation of a CI runner for shared-hostings."
+  },
+  {
+    "image": "https://opengraph.githubassets.com/36d2bd8dab470f655ff835420f3947d1f79a5f6681d0f37d541610aca47d5686/ariakh55/tmux-bluetooth-device",
+    "altimg": "Tmux bluetooth status bar",
+    "link": "https://github.com/ariakh55/tmux-bluetooth-device",
+    "name": "ariakh55/tmux-bluetooth-device",
+    "description": "I was board and made this for the tmux status bar"
+  }
+]
