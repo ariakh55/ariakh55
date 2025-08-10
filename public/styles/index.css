@@ -157,7 +157,7 @@ main .wide-container {
     text-justify: inter-character;
 }
 
-.projects-list {
+.list {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -193,6 +193,42 @@ main .wide-container {
     border-color: var(--sky);
 }
 
+.list.playlist {
+    display: block;
+    width: 100%;
+}
+
+.track-card {
+    display: flex; 
+    gap: 10px;
+
+    margin-top: 3px;
+    margin-bottom: 2px;
+    
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--flamingo);
+}
+
+.track-card:nth-last-child(1){
+    border-bottom: unset;
+}
+
+.track-card .thumbnail {
+    width: 25%;
+    aspect-ratio: 1/1;
+}
+
+.track-card .info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.track-card .info p, .track-card .info a {
+    margin: 0;
+    font-size: 1.5vw;
+}
+
 .icon {
     font-family: 'NerdIcon';
 }
@@ -224,13 +260,18 @@ footer .footer-info {
 }
 
 @media only screen and (max-width: 1250px) {
-    .projects-list {
+    .list {
         justify-content: center;
     }
 
     .project-card {
         flex: 0 0 45%;
     }
+
+    .track-card .info p, .track-card .info a {
+        font-size: 2vw;
+    }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -268,6 +309,10 @@ footer .footer-info {
 
     .project-card {
         flex: unset;
+    }
+
+    .track-card .info p, .track-card .info a {
+        font-size: 4vw;
     }
 }
 

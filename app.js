@@ -10,6 +10,7 @@ const { renderMarkdownToHtml } = require("./utils/markdownRenderer");
 const config = require("./config");
 const { buildHead } = require("./utils/buildHead");
 const { logVisit, getTotalVisitsPerPage } = require("./utils/statics");
+const { resolveTracks } = require("./utils/playlist");
 
 const app = express();
 const dbPath = path.join(__dirname, "stats.db");
@@ -67,7 +68,7 @@ app.get("/resume", (_, res) => {
   });
 });
 
-app.get("/playlist", (_, res) => {
+app.get("/playlist", async (_, res) => {
   const { head } = res.locals;
   res.locals.head = buildHead({
     title: `${head.title} - Playlist`,
@@ -75,7 +76,11 @@ app.get("/playlist", (_, res) => {
     url: `${head.og.url}/playlist`,
   });
 
-  res.render("pages/playlist.html");
+  const playlist = await resolveTracks();
+
+  res.render("pages/playlist.html", {
+    playlist,
+  });
 });
 
 const devModeEnabled = (req, res, next) => {

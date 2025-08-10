@@ -4,7 +4,16 @@
 <div class="wide-container">
     <h3>This month's top listens</h3>
     <hr />
-    <p style="text-align: center">COMMING SOON</p>
+    {% if playlist.length == 0 %}
+        <p style="text-align: center">EMPTY</p>
+        
+    {% else  %}
+      <div class="list playlist">
+        {% for track in playlist %}
+          {%- include('partials/trackcard.html')%}
+        {% endfor %}
+      </div>
+    {% endif  %}
 </div>
 
 {% endblock %}
