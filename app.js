@@ -49,6 +49,17 @@ app.use((req, res, next) => {
   next();
 });
 
+const devModeEnabled = (req, res, next) => {
+  const isDevMode =
+    config.devHeader &&
+    config.devHeaderValue &&
+    decodeURIComponent(req.query[config.devHeader]) === config.devHeaderValue;
+
+  res.locals.isDevMode = isDevMode;
+
+  return next();
+};
+
 app.get("/", (_, res) => {
   res.render("pages/home.html", {
     content: renderMarkdownToHtml("./README.md"),
@@ -68,7 +79,7 @@ app.get("/resume", (_, res) => {
   });
 });
 
-app.get("/playlist", async (_, res) => {
+app.get("/playlist", devModeEnabled, async (_, res) => {
   const { head } = res.locals;
   res.locals.head = buildHead({
     title: `${head.title} - Playlist`,
@@ -76,23 +87,13 @@ app.get("/playlist", async (_, res) => {
     url: `${head.og.url}/playlist`,
   });
 
-  const playlist = await resolveTracks();
+  const { playlist, cacheInfo } = await resolveTracks();
 
   res.render("pages/playlist.html", {
     playlist,
+    cacheInfo: res.locals.isDevMode && cacheInfo,
   });
 });
-
-const devModeEnabled = (req, res, next) => {
-  const isDevMode =
-    config.devHeader &&
-    config.devHeaderValue &&
-    req.query[config.devHeader] === config.devHeaderValue;
-
-  res.locals.isDevMode = isDevMode;
-
-  return next();
-};
 
 app.get("/blogs", devModeEnabled, async (_, res) => {
   const { head } = res.locals;

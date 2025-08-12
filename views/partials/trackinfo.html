@@ -1,0 +1,6 @@
+{% if urls.length == 0 %}
+    {% else %}
+        {% for item in urls %}
+            <a href={{item.url}} traget="_blank">{{item.type}}</a>
+        {% endfor %}
+{% endif %}

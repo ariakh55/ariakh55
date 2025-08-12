@@ -3,6 +3,7 @@
 {% block content %}
 <div class="wide-container">
     <h3>This month's top listens</h3>
+    {% if isDevMode %}<span>{{cacheInfo}} TRACKS AVAILABLE IN CACHE</span>{% endif %}
     <hr />
     {% if playlist.length == 0 %}
         <p style="text-align: center">EMPTY</p>
