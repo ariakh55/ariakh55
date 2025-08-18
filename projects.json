@@ -16,14 +16,14 @@
   {
     "image": "https://opengraph.githubassets.com/8df23507ea72e47869dce08ff28c2e43c9ebbb0a95b427d82aa10aade3fc0c89/ariakh55/dotfiles",
     "altimg": "Dotfiles",
-    "link": "https://github.com/ariakh55/doftiles",
-    "name": "ariakh55/doftiles",
+    "link": "https://github.com/ariakh55/dotfiles",
+    "name": "ariakh55/dotfiles",
     "description": "My dotfiles + some techinacal difficulties and complexities"
   },
   {
     "image": "https://opengraph.githubassets.com/2a09448c2d5284b6428f8e6607b0d732d430c41feddba796cff5642ae351dda1/ariakh55/deploy-webhook",
     "altimg": "ariakh55/deploy-webhook",
-    "link": "https://github.com/ariakh55/worker-plus",
+    "link": "https://github.com/ariakh55/deploy-webhook",
     "name": "ariakh55/deploy-webhook",
     "description": "A very lazy implementation of a CI runner for shared-hostings."
   },
