@@ -1,0 +1,32 @@
+<script type="speculationrules">
+{
+  "prefetch": [
+    {
+      "urls": [
+        "/resume",
+        "/blogs",
+        "/blog",
+        "/projects",
+        "/playlist"
+      ]
+    }
+  ],
+  "prerender": [
+    {
+      "where": {
+        "and": [
+          {
+            "href_matches": "/*"
+          },
+          {
+            "not": {
+              "href_matches": "/rawblogs"
+            }
+          }
+        ]
+      },
+      "eagerness": "moderate"
+    }
+  ]
+}
+</script>
