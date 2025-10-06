@@ -1,6 +1,8 @@
 {
   "short_name": "Sulfur",
   "name": "An App about sulfur sashimi",
+  "description":"Sulfur's Personal",
+  "id":"tech.sulfursashimi",
   "icons": [
     {
       "src": "favicon.ico",
