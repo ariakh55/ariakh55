@@ -5,10 +5,22 @@
       "urls": [
         "/resume",
         "/blogs",
-        "/blog",
         "/projects",
         "/playlist"
       ]
+    }
+  ]
+}
+</script>
+
+<script type="speculationrules">
+{
+  "prefetch": [
+    {
+      "where": {
+        "href_matches": "/blog/*"
+      },
+      "eagerness": "immediate"
     }
   ],
   "prerender": [

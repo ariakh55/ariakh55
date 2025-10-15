@@ -24,6 +24,13 @@ img {
     height: auto;
 }
 
+img.micro-banner {
+    display: block;
+    margin:0 auto;
+    width:140px;
+    height:auto; 
+}
+
 .markdown-container[data-src="/public/README.md"] img {
     width: auto;
     height: 20px;
@@ -249,7 +256,7 @@ footer .footer-info {
 }
 
 .cream-of-crop {
-    font-family: monospace;
+    /* font-family: monospace; */
     font-size: 1vw;
     line-height: 1vw;
 }
