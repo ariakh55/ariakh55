@@ -28,6 +28,7 @@ const fetchTrackCoveArt = async (mbid) => {
 
   const response = await fetch(apiUrl, {
     method: "GET",
+    redirect: "follow",
     headers: {
       "User-Agent": USER_AGENT,
     },
