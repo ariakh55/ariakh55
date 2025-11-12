@@ -1,5 +1,9 @@
-<div class="track-card" hx-trigger="revealed" hx-get="/playlist/{{track.mbid}}/" hx-swap="outerHTML"
-    hx-target="img.thumbnail[data-thumbid='{{track.id}}']">
+<div class="track-card" 
+    hx-trigger="load" 
+    hx-get="/playlist/{{track.mbid}}/"
+    hx-swap="outerHTML"
+    hx-target="img.thumbnail[data-thumbid='{{track.id}}']"
+>
 
     <img class="thumbnail" data-thumbid="{{track.id}}" src="" alt="ART FOR {{track.album}}">
 

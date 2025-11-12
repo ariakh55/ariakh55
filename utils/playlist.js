@@ -24,7 +24,7 @@ const BASE_COVERART_API_URL = "https://coverartarchive.org/";
 const USER_AGENT =
   "Application sulfurwebsite/1.0.0 sulfursa@sulfursashimi.tech";
 
-const populateWithCoverArt = async (tracks, coverArt) => {
+const populateWithCoverArt = (tracks, coverArt) => {
   return tracks.map((track) => ({ ...track, coverArt }));
 };
 
@@ -58,7 +58,8 @@ const fetchTrackCoverArt = async (mbid) => {
   const base64CoverArt = Buffer.from(arrayBuffer).toString("base64");
 
   const coverArt = `data:image/jpg;base64,${base64CoverArt}`;
-  if (tracks && tracks.length > 0) populateWithCoverArt(tracks, coverArt);
+  if (tracks && tracks.length > 0)
+    PLAYLIST_CACHE[mbid] = populateWithCoverArt(tracks, coverArt);
 
   return coverArt;
 };
