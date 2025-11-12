@@ -1,14 +1,15 @@
-<div class="track-card" hx-sync="replace">
+<div class="track-card" hx-trigger="revealed" hx-get="/playlist/{{track.mbid}}/" hx-swap="outerHTML"
+    hx-target="img.thumbnail[data-thumbid='{{track.id}}']">
+
     <img class="thumbnail" data-thumbid="{{track.id}}" src="" alt="ART FOR {{track.album}}">
 
-    <div class="info"
-        hx-trigger="load"
-        hx-get="/playlist/{{track.mbid}}/"
-        hx-swap="outerHTML"
-        hx-target="img[data-thumbid='{{track.id}}']"
-    >
+    <div class="info">
         <a href="{{track.link}}" rel="noref" target="_blank">{{track.title}}</a>
-        <p><str><span class="icon"></span> Artist:</str> {{track.artist}}</p>
-        <p><str><span class="icon">󰀥</span> Album:</str> {{track.album}}</p>
+        <p>
+            <str><span class="icon"></span> Artist:</str> {{track.artist}}
+        </p>
+        <p>
+            <str><span class="icon">󰀥</span> Album:</str> {{track.album}}
+        </p>
     </div>
 </div>

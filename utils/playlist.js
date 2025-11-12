@@ -48,7 +48,7 @@ const fetchTrackCoverArt = async (mbid) => {
     console.warn("something bad happend");
   }
 
-  if (!httpResponse.ok) {
+  if (!httpResponse || !httpResponse.ok) {
     console.error("Failed to fetch MusicBrainz api");
     return null;
   }
@@ -133,7 +133,6 @@ const resolveTracks = async () => {
   }
 
   const cacheInfo = Object.keys(PLAYLIST_CACHE).length;
-  console.log(cacheInfo);
   return {
     playlist: resolvedTracks.filter(uniqFilterAccordingToProp("id")),
     cacheInfo,
