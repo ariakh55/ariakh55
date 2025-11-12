@@ -10,7 +10,7 @@ const { renderMarkdownToHtml } = require("./utils/markdownRenderer");
 const config = require("./config");
 const { buildHead } = require("./utils/buildHead");
 const { logVisit, getTotalVisitsPerPage } = require("./utils/statics");
-const { resolveTracks } = require("./utils/playlist");
+const { resolveTracks, fetchTrackCoverArt } = require("./utils/playlist");
 
 const app = express();
 const dbPath = path.join(__dirname, "stats.db");
@@ -93,6 +93,20 @@ app.get("/playlist", devModeEnabled, async (_, res) => {
     playlist,
     cacheInfo: res.locals.isDevMode && cacheInfo,
   });
+});
+
+app.get("/playlist/:mbid", async (req, res) => {
+  const { mbid } = req.params;
+  const coverArt = await fetchTrackCoverArt(mbid);
+
+  if (!coverArt)
+    return res.status(404).send("Couldn't find the song in the music brainz");
+
+  const html = `
+    <img class="thumbnail" src="${coverArt}" alt="IMG for album">
+    `;
+
+  res.status(200).send(html);
 });
 
 app.get("/blogs", devModeEnabled, async (_, res) => {
