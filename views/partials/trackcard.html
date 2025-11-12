@@ -1,8 +1,8 @@
-<div class="track-card">
+<div class="track-card" hx-sync="replace">
     <img class="thumbnail" data-thumbid="{{track.id}}" src="" alt="ART FOR {{track.album}}">
 
     <div class="info"
-        hx-trigger="load once queue:all"
+        hx-trigger="load"
         hx-get="/playlist/{{track.mbid}}/"
         hx-swap="outerHTML"
         hx-target="img[data-thumbid='{{track.id}}']"
