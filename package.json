@@ -6,6 +6,7 @@
     "scripts": {
         "start": "node .",
         "dev": "nodemon -e html,js --exec 'node  --env-file=.env  app.js'",
+        "gen:static": "node utils/renderStatic.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],

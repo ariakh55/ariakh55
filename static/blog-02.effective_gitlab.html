@@ -32,7 +32,7 @@ The project I was working on last month had this issue, and for each deployment 
 <p>You might ask why? Let me tell you. You set a rule on your dev team to squash every MR&#39;s commits to have clean timeline,
 only then to create MRs to deploy to each env (without squashing, because you don&#39;t want to lose the timeline on staging and production).</p>
 <div style="margin: 0 auto;max-width: fit-content" title="Branch Deployment">
-<img src="../../blogs/02.effective_gitlab/branch-deployment.drawio.svg" alt="Branch Deployment"/>
+<img src="blogs/02.effective_gitlab/branch-deployment.drawio.svg" alt="Branch Deployment"/>
 </div>
 
 <p>It seems ok! Yeah kinda. Wait till you want to deploy a hotfix or suddenly PMs want an emergency change for demo meeting.
@@ -52,7 +52,7 @@ They have Tag and Release system which is well integrated into git.</p>
 <p>Tags are like branches but different in a way. They are annotated to be used in deploying and versioning, 
 so that the branches can be used solely for development. Also, cloud providers give the option of creating a release from these Tags,
 which makes it way easier and simpler to build/deploy and deliver without worrying about merge conflicts and changes being overridden.</p>
-<p><img loading="lazy" alt="branch-vs-tag" title="Branch vs Tag" src="../../blogs/02.effective_gitlab/branch-vs-tag.drawio.svg"></p>
+<p><img loading="lazy" alt="branch-vs-tag" title="Branch vs Tag" src="blogs/02.effective_gitlab/branch-vs-tag.drawio.svg"></p>
 <p>To summarize, the list of benefits of switch to Taging and Versioning system:</p>
 <ul>
 <li>Clean separation of development and release</li>
@@ -78,7 +78,7 @@ Developers create their branches from this branch, either it is a feature or a b
 Each dev branch has a CI/CD pipeline for integration tests, lint, even build/deploy to dev envs or dev binaries.</p>
 <p><em>Every test will be done in these branches to make sure nothing will break/regress</em> </p>
 <div style="margin: 0 auto;max-width: fit-content" title="Branching Strategy">
-<img src="../../blogs/02.effective_gitlab/branch-strat.drawio.svg" alt="Branching Strategy" />
+<img src="blogs/02.effective_gitlab/branch-strat.drawio.svg" alt="Branching Strategy" />
 </div>
 
 <p>Also, devs who are working together or have parallel tasks can agree on a single dev branch to aggregate and accumulate their changes for final deploy to master.</p>
@@ -104,7 +104,7 @@ A good thing about releases is the ability to easily rollback and revert the cha
 Also, in case of needing a hotfix or a sudden change, the same flow can be used from dev all the way to production
 without the concern of missing or conflicts in the branches, which will be explained in the next section.</p>
 <div style="margin: 0 auto;max-width: fit-content">
-<img src="../../blogs/02.effective_gitlab/neovim-releases.png" alt="Neovim Release" />
+<img src="blogs/02.effective_gitlab/neovim-releases.png" alt="Neovim Release" />
 </div>
 
 <h3>Hotfixes</h3>
