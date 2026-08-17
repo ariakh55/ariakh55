@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" hx-ext="head-support">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="public/assets/favicon.ico" />
+    <title>Aria Khoshnood</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Common L taker's personal portfolio" />
+    <meta name="theme-color" content="#f5e0dc" />
+    <meta property="og:title" content="Aria Khoshnood" />
+    <meta property="og:type" content="portfolio" />
+    <meta property="og:url" content="https://www.sulfursashimi.tech" />
+    <meta property="og:site_name" content="SulfurTech" />
+    <meta property="og:description" content="Common L taker's personal portfolio" />
+
+    <link rel="apple-touch-icon" href="public/assets/logo192.png" />
+    <link rel="manifest" href="public/manifest.json" />
+
+    <link rel="stylesheet" href="public/styles/index.css">
+    <link rel="stylesheet" href="public/styles/catppuccin-mocha.css">
+    <link rel="stylesheet" href="public/styles/default.min.css">
+
+    <link rel="prefetch" href="static/home.html">
+    <link rel="prefetch" href="static/resume.html">
+    <link rel="prefetch" href="static/blogs.html">
+    <link rel="prefetch" href="static/projects.html">
+    <link rel="prefetch" href="static/playlist.html">
+
+    <style>
+        @font-face {
+            font-family: 'NerdIcon';
+            font-style: normal;
+            font-display: swap;
+            src: url('./public/fonts/NerdFont-Regular.ttf');
+        }
+    </style>
+
+    <script src="public/scripts/htmx.min.js" crossorigin="anonymous"></script>
+    <script src="public/scripts/head-support.js" crossorigin="anonymous"></script>
+</head>
+
+<body style="display: flex; flex-direction: column;">
+    <header>
+        <nav id="nav">
+            <a href="#/home">HOME</a>
+            <a href="#/resume">RESUME</a>
+            <a href="#/blogs">BLOGS</a>
+        </nav>
+    </header>
+
+    <main id="content"></main>
+
+    <footer>
+        <div class="footer-info">
+            <div>Made By <a href="https://github.com/ariakh55">Sulfur Sashimi</a> (AD4K)</div>
+            <div>
+                Contact me directly @ <a href="mailto:khoshnoodaria@outlook.com">MY Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var ROUTES = {
+                home: 'static/home.html',
+                resume: 'static/resume.html',
+                blogs: 'static/blogs.html',
+            };
+
+            function fragmentForHash(hash) {
+                var raw = (hash || '').replace(/^#\/?/, '');
+                if (!raw) return ROUTES.home;
+
+                var parts = raw.split('/');
+                var name = decodeURIComponent(parts[0]);
+
+                if (name === 'blog' && parts[1]) {
+                    return 'static/blog-' + decodeURIComponent(parts[1]) + '.html';
+                }
+
+                return ROUTES[name] || 'static/error.html';
+            }
+
+            function currentRouteName() {
+                var raw = (location.hash || '').replace(/^#\/?/, '');
+                return raw.split('/')[0] || 'home';
+            }
+
+            function highlightActive() {
+                var active = currentRouteName();
+                var links = document.querySelectorAll('#nav > a');
+                links.forEach(function (a) {
+                    if (a.getAttribute('href') === '#/' + active) {
+                        a.setAttribute('aria-current', 'page');
+                    } else {
+                        a.removeAttribute('aria-current');
+                    }
+                });
+            }
+
+            function load() {
+                var file = fragmentForHash(location.hash);
+                htmx.ajax('GET', file, { target: '#content', swap: 'innerHTML' });
+                highlightActive();
+                window.scrollTo(0, 0);
+            }
+
+            window.addEventListener('hashchange', load);
+
+            document.addEventListener('DOMContentLoaded', function () {
+                if (!location.hash) {
+                    history.replaceState(null, '', '#/home');
+                }
+                load();
+            });
+        })();
+    </script>
+</body>
+
+</html>

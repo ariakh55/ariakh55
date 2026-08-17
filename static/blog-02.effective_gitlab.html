@@ -1,0 +1,130 @@
+<div class="wide-container">
+    <div class="markdown-container justify-parapragh">
+    <a href="#/blogs" class="back-button">
+        [GO BACK]
+    </a>
+        <h1>How to Effectively Manage Releases</h1>
+<h2>Intro</h2>
+<p>Software development is an accumulation of Thinking, Setup, Developing, Improvement, Testing, and the most important part: Delivering..
+Why is delivering important, one might ask? Because it can affect the whole process and without a good delivery 
+even for software that is going to be used by the developer—it will result in a total disaster and failure.</p>
+<p>From experience and working on multiple projects (many unfinished over weekend side-projects),
+I&#39;ve come to the understanding that managing releases and the strategy to do so can be tedious work and sometimes lead to huge complexities.</p>
+<p>In order to fix this issue I wanted to share my own strategy to avoid these kinds of complexities for any type of project 
+(mostly the ones with teams scaling from more than 3 developers).</p>
+<div style="margin: 0 auto;max-width: fit-content">
+<img src="https://b1286009.smushcdn.com/1286009/wp-content/uploads/2020/04/a-world-without-ci.cd-meme.jpg?&webp=1" alt="CI?"/>
+</div>
+
+<h2>The Issue</h2>
+<p>The issues, or the types of issues. After this section, they will be explained in detail. There are multiple types of deploying
+your application and delivering it to your customer. 
+One can be said to be the traditional manual build and uploading it to a fileserver ready to be downloaded.
+But sometimes your team is too cutting edge and modern to do so. Instead the higher-ups hire a DevOps guy and a developer to write Dockerfile/docker-compose files
+to automate the build and release using either GitHub Actions, GitLab CI, or many other CI/CDs out there.</p>
+<p>But unfortunately, having a CI/CD is not the solution, and this might lead to a bigger disaster called &quot;branching hell&quot;.
+The project I was working on last month had this issue, and for each deployment environment, there is a branch with that name which has a set of gitlab-ci.yml rule.</p>
+<div style="margin: 0 auto;max-width: fit-content">
+<img src="https://i.imgur.com/Owiji5N.png" alt="branching hell (from reddit)" style="width: 350px;"/>
+</div>
+
+<p>On the surface it looks ok everything might be OK! But no. a <strong>BIG</strong> <span style="color: red;">NO</span>.</p>
+<p>You might ask why? Let me tell you. You set a rule on your dev team to squash every MR&#39;s commits to have clean timeline,
+only then to create MRs to deploy to each env (without squashing, because you don&#39;t want to lose the timeline on staging and production).</p>
+<div style="margin: 0 auto;max-width: fit-content" title="Branch Deployment">
+<img src="../../blogs/02.effective_gitlab/branch-deployment.drawio.svg" alt="Branch Deployment"/>
+</div>
+
+<p>It seems ok! Yeah kinda. Wait till you want to deploy a hotfix or suddenly PMs want an emergency change for demo meeting.
+That&#39;s where all the things are going to tear apart.
+First, checkout from staging (cause no direct MR to prod), then work on branch, make MR, MR gets &quot;Approved&quot;, MR is merged to staging, and Staging gets deployed to prod after QA
+and all the tests run, making sure nothing is broken. Crisis averted. 
+You go back to your feature/bug branch, which is checked out from master (nightly), and you work peacefully on that.</p>
+<p><em>FastForward</em>: A week later, sprint is over, the new version is going to be deployed on staging. <strong>BOOM</strong> the hotfix is gone.
+Oh no, somebody forgot to cherry-pick and merge-back that hotfix.
+OR FAR WORSE, you merged it back to master but now there is big conflict that needs to be resolved and everybody is blocked.
+Even worse, the bug that was hotfixed a week ago is now regressed and is back in production.</p>
+<p>That&#39;s why I say it&#39;s not a good idea, no matter how much time and rules you as the tech lead set to make sure everything works perfectly.
+Ergo, be kind to yourself and don&#39;t do it.</p>
+<h2>The Solution</h2>
+<p>It might sound simple but looking at other repositories in GitHub for example <a href="https://github.com/neovim/neovim" rel="noref" target="_blank">Neovim<span class="icon"></span></a>,
+They have Tag and Release system which is well integrated into git.</p>
+<p>Tags are like branches but different in a way. They are annotated to be used in deploying and versioning, 
+so that the branches can be used solely for development. Also, cloud providers give the option of creating a release from these Tags,
+which makes it way easier and simpler to build/deploy and deliver without worrying about merge conflicts and changes being overridden.</p>
+<p><img loading="lazy" alt="branch-vs-tag" title="Branch vs Tag" src="../../blogs/02.effective_gitlab/branch-vs-tag.drawio.svg"></p>
+<p>To summarize, the list of benefits of switch to Taging and Versioning system:</p>
+<ul>
+<li>Clean separation of development and release</li>
+<li>Easier rollbacks</li>
+<li>Less merge conflict risk</li>
+<li>Simpler automation</li>
+</ul>
+<p>But how to switch from our branch hell or start using this on our new projects?
+I am no expert and I just chatted with gippity, which made me feel guilty and stupid for giving the thing I already knew.
+But I will try to include my experience to help implement this flow in projects.</p>
+<p>It&#39;s all about the concept. Once acquired, it can be applied anywhere else.</p>
+<h2>The flow (concept or whatever)</h2>
+<ol>
+<li>We need to clean our project. Delete all the extra branches, have no mercy because you are about to &quot;clean-up.&quot;</li>
+<li>You should only have a master/main branch. Make sure that branch is protected and all in the remote repo.</li>
+<li>Set a versioning strategy. <a href="https://semver.org/" ref="noref" target="_blank">Semver<span class="icon"></span></a> is one generic all-purpose versioning 
+which can be used and understood easily.</li>
+</ol>
+<p>You are all set now for the flow to be described.</p>
+<h3>Branching Strategy</h3>
+<p>In this flow, we use a main branch called (master/main) to deploy the next/nightly version.
+Developers create their branches from this branch, either it is a feature or a bugfix/hotfix branch.
+Each dev branch has a CI/CD pipeline for integration tests, lint, even build/deploy to dev envs or dev binaries.</p>
+<p><em>Every test will be done in these branches to make sure nothing will break/regress</em> </p>
+<div style="margin: 0 auto;max-width: fit-content" title="Branching Strategy">
+<img src="../../blogs/02.effective_gitlab/branch-strat.drawio.svg" alt="Branching Strategy" />
+</div>
+
+<p>Also, devs who are working together or have parallel tasks can agree on a single dev branch to aggregate and accumulate their changes for final deploy to master.</p>
+<h3>Versioning and Tags</h3>
+<p>After finalizing the changes on dev branches and the approval of the PMs and Reviewers,
+changes in the MR can be merged (with a proper naming) to master/main to be built as nightly.
+Nightly builds in this scenario can be considered as a Release Candidate to be versioned for staging and production envs.</p>
+<p><em>In some cases master branches are built/deployed automatically, so in this case tagging and versioning will be a matter of preference</em> </p>
+<p>After successful build/deploy to next/nightly env, the release manager can begin to mark the changes from nightly to Tag
+with proper version to staging or (directly to production). For example, a tag can be created as follows:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># staging env/build</span>
+git tag v1.0.0-staging 
+git push v1.0.0-staging
+</code></pre><p>For production:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># production</span>
+git tag v1.0.0
+git push v1.0.0
+</code></pre><p>Then pushing the tag like a normal branch to the remote repo. The tag is created and pushed.</p>
+<p>Also it is a matter of preference to automate the process of making release and/or deploying it to a server/k8s cluster or keeping it manual.</p>
+<h3>Releases</h3>
+<p>As mentioned in the previous section, Releases can be created from Tags and be built/deployed.
+A good thing about releases is the ability to easily rollback and revert the changes.
+Also, in case of needing a hotfix or a sudden change, the same flow can be used from dev all the way to production
+without the concern of missing or conflicts in the branches, which will be explained in the next section.</p>
+<div style="margin: 0 auto;max-width: fit-content">
+<img src="../../blogs/02.effective_gitlab/neovim-releases.png" alt="Neovim Release" />
+</div>
+
+<h3>Hotfixes</h3>
+<p>In this flow, as mentioned, hotfixes will also have the same base as the master/main branch, and the application
+of the hotfix is a simple interactive rebase or a cherry-pick to the hotfix tag name.</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># hotfix tag with minor version</span>
+git tag v1.0.1-staging
+git push v1.0.1-staging
+</code></pre><h2>Conclusion</h2>
+<p>In the end switching is not an easy task, migrations require patience and consistency. 
+In big projects it will become a hurdle as the complexity of chaging multiple gitlab-ci.yml or github actions is through the roof.</p>
+<p>But all in all, taking advantage of this flow brings happiness and removes deployment inconsistencies.</p>
+<p><em><strong>Be Happy :D</strong></em> </p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://github.com/neovim/neovim" rel="noref" target="_blank">Neovim a vim fork</a></li>
+<li><a href="https://semver.org/" ref="noref" target="_blank">Semantic Versioning</a></li>
+<li><a href="https://reddit.com/r/git/comments/2yt9ox/how_do_you_navigate_branch_spaghetti/" ref="noref" target="_blank">Branch hell discussion (the img is only used)</a></li>
+<li><a href="https://docs.gitlab.com/user/project/repository/tags/" ref="noref" target="_blank">Tags - Gitlab Docs (I had doubts putting this here)</a></li>
+<li><a href="https://docs.gitlab.com/user/project/releases/" ref="noref" target="_blank">Releases - Gitlab Docs</a></li>
+</ul>
+    </div>
+</div>
