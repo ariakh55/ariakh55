@@ -1,10 +1,12 @@
 name: Trigger Deploy
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+## DUE TO MY DOMAIN GOING TO SHIT I CANNOT USE THIS ANYMORE
+
+# on:
+#   push:
+#     branches: [ "master" ]
+#   pull_request:
+#     branches: [ "master" ]
 
 jobs:
   deploy:
